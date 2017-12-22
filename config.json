@@ -1,0 +1,196 @@
+{
+  "globalMessages": {
+    "required": "El campo es requerido",
+    "minlength": "la longitud mínima es de %d caracteres",
+    "maxlength": "La longitud máxima es de %d caracteres"
+  },
+  "paginationGlobal": {
+    "elementsPerPage": 2
+  },
+  "entities": [
+    {
+      "name": "Proveedor",
+      "primaryKey": {
+        "name": "IdProveedor"
+      },
+      "attributes": [
+        {
+          "name": "Nombre",
+          "type": "String",
+          "required": "true"
+        },
+        {
+          "name": "Activo",
+          "type": "Boolean",
+          "required": "true"
+        },
+        {
+          "name": "Identificacion",
+          "type": "String",
+          "required": "true"
+        }
+      ]
+    },
+    {
+      "name": "Producto",
+      "primaryKey": {
+        "name": "IdProducto"
+      },
+      "attributes": [
+        {
+          "name": "Nombre",
+          "type": "String",
+          "required": "true",
+          "position": {
+            "row": 0,
+            "col": 0
+          },
+          "messages": {
+            "maxlength": "La longitud máxima es de 30 carácteres"
+          },
+          "validations": [
+            {
+              "type": "minlength",
+              "value": 4,
+              "message": "El Nombre debe tener mínimo %d carácteres"
+            },
+            {
+              "type": "maxlength",
+              "value": 30
+            },
+            {
+              "type": "pattern",
+              "value": "[A-Za-zÑñ ]*",
+              "message": "El nombre debe ser en mayúsculas"
+            }
+          ]
+        },
+        {
+          "name": "Cantidad",
+          "type": "Integer",
+          "required": "true",
+          "position": {
+            "row": 1,
+            "col": 0
+          }
+        },
+        {
+          "name": "Valor unitario",
+          "type": "Integer",
+          "required": "true",
+          "position": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "name": "Descripcion",
+          "type": "String",
+          "required": "false",
+          "control": "textarea",
+          "position": {
+            "row": 3,
+            "col": 0
+          }
+        },
+        {
+          "name": "Activo",
+          "type": "Boolean",
+          "required": "true",
+          "position": {
+            "row": 2,
+            "col": 0
+          }
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Proveedor",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Proveedor",
+          "fieldToShow": "Nombre",
+          "primaryKey":"IdProveedor"
+        }
+      ]
+    },
+    {
+      "name": "Cliente",
+      "primaryKey": {
+        "name": "IdCliente"
+      },
+      "attributes": [
+        {
+          "name": "Nombre",
+          "type": "String",
+          "required": "true"
+        },
+        {
+          "name": "Activo",
+          "type": "Boolean",
+          "required": "true"
+        },
+        {
+          "name": "Fecha nacimiento",
+          "type": "Date",
+          "required": "true"
+        }
+      ]
+    },
+    {
+      "name": "Factura",
+      "primaryKey": {
+        "name": "IdFactura"
+      },
+      "attributes": [
+        {
+          "name": "Numero",
+          "type": "Integer",
+          "required": "true"
+        },
+        {
+          "name": "Fecha",
+          "type": "Date",
+          "required": "true"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Cliente",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Cliente",
+          "fieldToShow": "Nombre",
+          "primaryKey":"IdCliente"
+        }
+      ]
+    },
+    {
+      "name": "Producto Factura",
+      "primaryKey": {
+        "name": "IdProductoFactura"
+      },
+      "attributes": [
+        {
+          "name": "Cantidad",
+          "type": "Integer",
+          "required": "true"
+        }
+      ],
+      "relationships": [
+        {
+          "entityRef": "Factura",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Factura",
+          "fieldToShow": "Numero",
+          "primaryKey":"IdFactura"
+        },
+        {
+          "entityRef": "Producto",
+          "typeRelationship": "many-to-one",
+          "fieldName": "Producto",
+          "fieldToShow": "Nombre",
+          "primaryKey":"IdProducto"
+        }
+      ]
+    }
+  ]
+}

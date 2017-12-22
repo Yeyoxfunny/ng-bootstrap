@@ -1,0 +1,19 @@
+<div *ngIf="factura" class="container">
+  <h3 class="m-top-and-bottom-2">Factura</h3>
+  <hr />
+  <dl>
+  
+    <dt>Numero</dt>
+    <dd>{{ factura.numero}}</dd>
+
+    <dt>Fecha</dt>
+    <dd>{{ factura.fecha}}</dd>
+
+    <dt>Cliente</dt>
+    <dd>
+      <a [routerLink]="['/entities', 'cliente', factura.cliente.IdCliente]">{{ factura.cliente.nombre }}</a>
+    </dd>
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+</div>

@@ -1,0 +1,28 @@
+<div *ngIf="producto" class="container">
+  <h3 class="m-top-and-bottom-2">Producto</h3>
+  <hr />
+  <dl>
+  
+    <dt>Nombre</dt>
+    <dd>{{ producto.nombre}}</dd>
+
+    <dt>Cantidad</dt>
+    <dd>{{ producto.cantidad}}</dd>
+
+    <dt>Valor Unitario</dt>
+    <dd>{{ producto.valorUnitario}}</dd>
+
+    <dt>Descripcion</dt>
+    <dd>{{ producto.descripcion}}</dd>
+
+    <dt>Activo</dt>
+    <dd>{{ producto.activo}}</dd>
+
+    <dt>Proveedor</dt>
+    <dd>
+      <a [routerLink]="['/entities', 'proveedor', producto.proveedor.IdProveedor]">{{ producto.proveedor.nombre }}</a>
+    </dd>
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+</div>

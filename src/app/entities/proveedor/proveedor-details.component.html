@@ -1,0 +1,18 @@
+<div *ngIf="proveedor" class="container">
+  <h3 class="m-top-and-bottom-2">Proveedor</h3>
+  <hr />
+  <dl>
+  
+    <dt>Nombre</dt>
+    <dd>{{ proveedor.nombre}}</dd>
+
+    <dt>Activo</dt>
+    <dd>{{ proveedor.activo}}</dd>
+
+    <dt>Identificacion</dt>
+    <dd>{{ proveedor.identificacion}}</dd>
+
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+</div>

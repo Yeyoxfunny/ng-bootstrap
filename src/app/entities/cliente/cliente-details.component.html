@@ -1,0 +1,18 @@
+<div *ngIf="cliente" class="container">
+  <h3 class="m-top-and-bottom-2">Cliente</h3>
+  <hr />
+  <dl>
+  
+    <dt>Nombre</dt>
+    <dd>{{ cliente.nombre}}</dd>
+
+    <dt>Activo</dt>
+    <dd>{{ cliente.activo}}</dd>
+
+    <dt>Fecha Nacimiento</dt>
+    <dd>{{ cliente.fechaNacimiento}}</dd>
+
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+</div>

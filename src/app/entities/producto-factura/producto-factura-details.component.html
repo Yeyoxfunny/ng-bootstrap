@@ -1,0 +1,20 @@
+<div *ngIf="productoFactura" class="container">
+  <h3 class="m-top-and-bottom-2">Producto Factura</h3>
+  <hr />
+  <dl>
+  
+    <dt>Cantidad</dt>
+    <dd>{{ productoFactura.cantidad}}</dd>
+
+    <dt>Factura</dt>
+    <dd>
+      <a [routerLink]="['/entities', 'factura', productoFactura.factura.IdFactura]">{{ productoFactura.factura.numero }}</a>
+    </dd>
+    <dt>Producto</dt>
+    <dd>
+      <a [routerLink]="['/entities', 'producto', productoFactura.producto.IdProducto]">{{ productoFactura.producto.nombre }}</a>
+    </dd>
+  </dl>
+  <a routerLink="update" class="btn btn-primary"><i class="fa fa-refresh fa-fw"></i>Actualizar</a>
+
+</div>

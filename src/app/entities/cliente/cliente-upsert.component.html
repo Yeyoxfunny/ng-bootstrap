@@ -1,0 +1,59 @@
+<div class="container m-top-and-bottom">
+  <div class="card">
+    <div class="card-header text-white text-center bg-dark">
+      <h4>{{ crudOperationTitle }} Cliente</h4>
+    </div>
+    <div class="card-body">
+      <form #myForm="ngForm">
+        <div class="row">
+          
+          
+          <div class="col-12 form-group">
+  <label for="field_nombre">Nombre</label>
+  <input type="text" id="field_nombre" *ngIf="cliente" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" required  [ngClass]="{ 'is-invalid': (myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid) }" />
+  <input type="text" id="field_nombre" *ngIf="!cliente" class="form-control" name="nombre" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid) }"/>
+      <div *ngIf="(myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid)">
+                <small [hidden]="!myForm.controls.nombre?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+          <div class="col-12 form-check">
+  <label class="custom-control custom-checkbox">
+    <input *ngIf="cliente" type="checkbox" class="custom-control-input" name="activo"  [(ngModel)]="cliente.activo" required  [ngClass]="{ 'is-invalid': (myForm.controls.activo?.dirty && myForm.controls.activo?.invalid) }"/>
+    <input *ngIf="!cliente" type="checkbox" class="custom-control-input" name="activo" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.activo?.dirty && myForm.controls.activo?.invalid) }"/>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Activo</span>
+        <div *ngIf="(myForm.controls.activo?.dirty && myForm.controls.activo?.invalid)">
+                <small [hidden]="!myForm.controls.activo?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+  </label>
+</div>
+
+          
+          <div class="col-12 form-group">
+  <label for="field_fechaNacimiento">Fecha Nacimiento</label>
+  <input type="date" id="field_fechaNacimiento" *ngIf="cliente" class="form-control" name="fechaNacimiento" [(ngModel)]="cliente.fechaNacimiento" required  [ngClass]="{ 'is-invalid': (myForm.controls.fechaNacimiento?.dirty && myForm.controls.fechaNacimiento?.invalid) }" />
+  <input type="date" id="field_fechaNacimiento" *ngIf="!cliente" class="form-control" name="fechaNacimiento" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.fechaNacimiento?.dirty && myForm.controls.fechaNacimiento?.invalid) }"/>
+      <div *ngIf="(myForm.controls.fechaNacimiento?.dirty && myForm.controls.fechaNacimiento?.invalid)">
+                <small [hidden]="!myForm.controls.fechaNacimiento?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+
+
+
+          <div id="buttonsPanel" class="col-12 form-group">
+            <button class="btn btn-dark cursor-pointer" (click)="save(myForm.value)" *ngIf="isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Registrar
+            </button>
+            <button class="btn btn-dark cursor-pointer" (click)="update()" *ngIf="!isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

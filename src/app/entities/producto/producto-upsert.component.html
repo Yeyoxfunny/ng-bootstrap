@@ -1,0 +1,103 @@
+<div class="container m-top-and-bottom">
+  <div class="card">
+    <div class="card-header text-white text-center bg-dark">
+      <h4>{{ crudOperationTitle }} Producto</h4>
+    </div>
+    <div class="card-body">
+      <form #myForm="ngForm">
+        <div class="row">
+          
+          <div class="col-12 form-group">
+  <label for="field_nombre">Nombre</label>
+  <input type="text" id="field_nombre" *ngIf="producto" class="form-control" name="nombre" [(ngModel)]="producto.nombre" required minlength="4" maxlength="30" pattern="[A-Za-zÑñ ]*" [ngClass]="{ 'is-invalid': (myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid) }" />
+  <input type="text" id="field_nombre" *ngIf="!producto" class="form-control" name="nombre" ngModel required minlength="4" maxlength="30" pattern="[A-Za-zÑñ ]*" [ngClass]="{ 'is-invalid': (myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid) }"/>
+      <div *ngIf="(myForm.controls.nombre?.dirty && myForm.controls.nombre?.invalid)">
+                <small [hidden]="!myForm.controls.nombre?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                            <small [hidden]="!myForm.controls.nombre?.errors?.minlength" class="form-text text-danger">
+                El Nombre debe tener mínimo 4 carácteres
+            </small>
+                    <small [hidden]="!myForm.controls.nombre?.errors?.maxlength" class="form-text text-danger">
+                La longitud máxima es de 30 carácteres 30
+            </small>
+                    <small [hidden]="!myForm.controls.nombre?.errors?.pattern" class="form-text text-danger">
+                El nombre debe ser en mayúsculas
+            </small>
+            </div>
+</div>
+
+          
+          <div class="col-6 form-group">
+  <label for="field_cantidad">Cantidad</label>
+  <input type="number" id="field_cantidad" *ngIf="producto" class="form-control" name="cantidad" [(ngModel)]="producto.cantidad" required  [ngClass]="{ 'is-invalid': (myForm.controls.cantidad?.dirty && myForm.controls.cantidad?.invalid) }" />
+  <input type="number" id="field_cantidad" *ngIf="!producto" class="form-control" name="cantidad" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.cantidad?.dirty && myForm.controls.cantidad?.invalid) }"/>
+      <div *ngIf="(myForm.controls.cantidad?.dirty && myForm.controls.cantidad?.invalid)">
+                <small [hidden]="!myForm.controls.cantidad?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+          <div class="col-6 form-group">
+  <label for="field_valorUnitario">Valor Unitario</label>
+  <input type="number" id="field_valorUnitario" *ngIf="producto" class="form-control" name="valorUnitario" [(ngModel)]="producto.valorUnitario" required  [ngClass]="{ 'is-invalid': (myForm.controls.valorUnitario?.dirty && myForm.controls.valorUnitario?.invalid) }" />
+  <input type="number" id="field_valorUnitario" *ngIf="!producto" class="form-control" name="valorUnitario" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.valorUnitario?.dirty && myForm.controls.valorUnitario?.invalid) }"/>
+      <div *ngIf="(myForm.controls.valorUnitario?.dirty && myForm.controls.valorUnitario?.invalid)">
+                <small [hidden]="!myForm.controls.valorUnitario?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+          <div class="col-12 form-check">
+  <label class="custom-control custom-checkbox">
+    <input *ngIf="producto" type="checkbox" class="custom-control-input" name="activo"  [(ngModel)]="producto.activo" required  [ngClass]="{ 'is-invalid': (myForm.controls.activo?.dirty && myForm.controls.activo?.invalid) }"/>
+    <input *ngIf="!producto" type="checkbox" class="custom-control-input" name="activo" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.activo?.dirty && myForm.controls.activo?.invalid) }"/>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Activo</span>
+        <div *ngIf="(myForm.controls.activo?.dirty && myForm.controls.activo?.invalid)">
+                <small [hidden]="!myForm.controls.activo?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+  </label>
+</div>
+
+          
+          <div class="col-12 form-group">
+  <label for="field_descripcion">Descripcion</label>
+  <textarea id="field_descripcion" *ngIf="producto" name="descripcion" class="form-control" [(ngModel)]="producto.descripcion" required  [ngClass]="{ 'is-invalid': (myForm.controls.descripcion?.dirty && myForm.controls.descripcion?.invalid) }"></textarea>
+  <textarea id="field_descripcion" *ngIf="!producto" name="descripcion" class="form-control" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.descripcion?.dirty && myForm.controls.descripcion?.invalid) }"></textarea>
+      <div *ngIf="(myForm.controls.descripcion?.dirty && myForm.controls.descripcion?.invalid)">
+                <small [hidden]="!myForm.controls.descripcion?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+          
+           <div class="col-12 form-group" *ngIf="proveedor">
+  <label for="field_proveedor">Proveedor</label>
+
+  <select *ngIf="!producto" class="form-control" name="idProveedor" ngModel>
+    <option [ngValue]="null"></option>
+    <option [ngValue]="proveedor.IdProveedor" *ngFor="let proveedor of proveedor">{{ proveedor.nombre }}</option>
+  </select>
+
+  <select *ngIf="producto && producto.idProveedor" class="form-control" name="idProveedor" [(ngModel)]="producto.idProveedor">
+    <option [ngValue]="null"></option>
+    <option [ngValue]="proveedor.IdProveedor" *ngFor="let proveedor of proveedor">{{ proveedor.nombre }}</option>
+  </select>
+</div>
+
+          
+
+
+
+          <div id="buttonsPanel" class="col-12 form-group">
+            <button class="btn btn-dark cursor-pointer" (click)="save(myForm.value)" *ngIf="isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Registrar
+            </button>
+            <button class="btn btn-dark cursor-pointer" (click)="update()" *ngIf="!isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

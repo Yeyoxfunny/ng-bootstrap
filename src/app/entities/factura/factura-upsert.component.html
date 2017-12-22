@@ -1,0 +1,61 @@
+<div class="container m-top-and-bottom">
+  <div class="card">
+    <div class="card-header text-white text-center bg-dark">
+      <h4>{{ crudOperationTitle }} Factura</h4>
+    </div>
+    <div class="card-body">
+      <form #myForm="ngForm">
+        <div class="row">
+          
+          
+          <div class="col-12 form-group">
+  <label for="field_numero">Numero</label>
+  <input type="number" id="field_numero" *ngIf="factura" class="form-control" name="numero" [(ngModel)]="factura.numero" required  [ngClass]="{ 'is-invalid': (myForm.controls.numero?.dirty && myForm.controls.numero?.invalid) }" />
+  <input type="number" id="field_numero" *ngIf="!factura" class="form-control" name="numero" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.numero?.dirty && myForm.controls.numero?.invalid) }"/>
+      <div *ngIf="(myForm.controls.numero?.dirty && myForm.controls.numero?.invalid)">
+                <small [hidden]="!myForm.controls.numero?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+          <div class="col-12 form-group">
+  <label for="field_fecha">Fecha</label>
+  <input type="date" id="field_fecha" *ngIf="factura" class="form-control" name="fecha" [(ngModel)]="factura.fecha" required  [ngClass]="{ 'is-invalid': (myForm.controls.fecha?.dirty && myForm.controls.fecha?.invalid) }" />
+  <input type="date" id="field_fecha" *ngIf="!factura" class="form-control" name="fecha" ngModel required  [ngClass]="{ 'is-invalid': (myForm.controls.fecha?.dirty && myForm.controls.fecha?.invalid) }"/>
+      <div *ngIf="(myForm.controls.fecha?.dirty && myForm.controls.fecha?.invalid)">
+                <small [hidden]="!myForm.controls.fecha?.errors?.required" class="form-text text-danger">El campo es requerido</small>
+                    </div>
+</div>
+
+          
+           <div class="col-12 form-group" *ngIf="cliente">
+  <label for="field_cliente">Cliente</label>
+
+  <select *ngIf="!factura" class="form-control" name="idCliente" ngModel>
+    <option [ngValue]="null"></option>
+    <option [ngValue]="cliente.IdCliente" *ngFor="let cliente of cliente">{{ cliente.nombre }}</option>
+  </select>
+
+  <select *ngIf="factura && factura.idCliente" class="form-control" name="idCliente" [(ngModel)]="factura.idCliente">
+    <option [ngValue]="null"></option>
+    <option [ngValue]="cliente.IdCliente" *ngFor="let cliente of cliente">{{ cliente.nombre }}</option>
+  </select>
+</div>
+
+          
+
+
+
+          <div id="buttonsPanel" class="col-12 form-group">
+            <button class="btn btn-dark cursor-pointer" (click)="save(myForm.value)" *ngIf="isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Registrar
+            </button>
+            <button class="btn btn-dark cursor-pointer" (click)="update()" *ngIf="!isCreate" [disabled]="myForm.form.invalid">
+              <i class="fa fa-floppy-o fa-fw"></i>Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
